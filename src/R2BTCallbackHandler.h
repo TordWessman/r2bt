@@ -1,11 +1,11 @@
 #ifndef __R2BTCallbackHandler_H__
 #define __R2BTCallbackHandler_H__
 
-#include <BLEDevice.h>
+#include <NimBLEDevice.h>
 
 #include "R2BTDataContainer.h"
 
-class R2BTCallbackHandler : BLECharacteristicCallbacks
+class R2BTCallbackHandler : NimBLECharacteristicCallbacks
 {
 
 public:
@@ -13,9 +13,9 @@ public:
 
     ~R2BTCallbackHandler() override {}
 
-    void onWrite(BLECharacteristic *characteristic) override;
+    void onWrite(NimBLECharacteristic *characteristic) override;
 
-    void onRead(BLECharacteristic *characteristic) override;
+    void onRead(NimBLECharacteristic *characteristic) override;
 
 private:
     R2BTDataContainer *dataContainer;

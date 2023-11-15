@@ -1,7 +1,7 @@
 #ifndef __R2BTDataContainer_H__
 #define __R2BTDataContainer_H__
 
-#include <BLEDevice.h>
+#include <NimBLEDevice.h>
 
 #include "R2BTError.h"
 #include "cJSON.h"
@@ -18,9 +18,9 @@ class R2BTHub;
 
 enum R2BTDataContainerAccessMode
 {
-    R2BTEndpointAccessModeRead = BLECharacteristic::PROPERTY_READ,
-    R2BTEndpointAccessModeWrite = BLECharacteristic::PROPERTY_WRITE | BLECharacteristic::PROPERTY_WRITE_NR,
-    R2BTEndpointAccessModeReadWrite = BLECharacteristic::PROPERTY_READ | BLECharacteristic::PROPERTY_WRITE | BLECharacteristic::PROPERTY_WRITE_NR
+    R2BTEndpointAccessModeRead = NIMBLE_PROPERTY::READ | NIMBLE_PROPERTY::NOTIFY,
+    R2BTEndpointAccessModeWrite = NIMBLE_PROPERTY::WRITE | NIMBLE_PROPERTY::WRITE_NR,
+    R2BTEndpointAccessModeReadWrite = NIMBLE_PROPERTY::READ | NIMBLE_PROPERTY::WRITE | NIMBLE_PROPERTY::WRITE_NR | NIMBLE_PROPERTY::NOTIFY
 };
 
 /// @brief Represents a "variable" that can be accessed by clients.
@@ -66,10 +66,10 @@ public:
     friend class R2BTHub;
 
 private:
-    BLECharacteristic *Instantiate(BLEService *pService);
+    NimBLECharacteristic *Instantiate(NimBLEService *service);
     const uint16_t id;
     R2BTDataContainerAccessMode accessMode;
-    BLECharacteristic *characteristic;
+    NimBLECharacteristic *characteristic;
 
     char characteristicId[UUID_LENGTH + 1];
 };

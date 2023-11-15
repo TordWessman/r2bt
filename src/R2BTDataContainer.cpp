@@ -25,22 +25,22 @@ char* R2BTDataContainer::GenerateRawValue()
 
 cJSON* R2BTDataContainer::GenerateValue()
 {
+    
     return cJSON_Parse(characteristic->getValue().c_str());
 }
 
 void R2BTDataContainer::SetValue(cJSON *newValue)
 {
     char *json_str = cJSON_Print(newValue);
-    characteristic->setValue(json_str);
-    free(json_str);
-    characteristic->notify();
+    characteristic->setValue((uint8_t*)json_str, strlen(json_str) + 1);
+    characteristic->notify(true);
 }
 
-BLECharacteristic* R2BTDataContainer::Instantiate(BLEService *pService)
+NimBLECharacteristic *R2BTDataContainer::Instantiate(NimBLEService *service)
 {
     assert(characteristic == nullptr);
 
-    characteristic = pService->createCharacteristic(characteristicId, accessMode);
+    characteristic = service->createCharacteristic(characteristicId, accessMode);
 
     return characteristic;
 }

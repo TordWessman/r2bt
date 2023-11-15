@@ -3,7 +3,7 @@
 #include "cJSON.h"
 #include "R2BTError.h"
 
-void R2BTCallbackHandler::onWrite(BLECharacteristic *characteristic)
+void R2BTCallbackHandler::onWrite(NimBLECharacteristic *characteristic)
 {
     cJSON *message = cJSON_Parse(characteristic->getValue().c_str());
 
@@ -21,7 +21,7 @@ void R2BTCallbackHandler::onWrite(BLECharacteristic *characteristic)
     }
 }
 
-void R2BTCallbackHandler::onRead(BLECharacteristic *characteristic)
+void R2BTCallbackHandler::onRead(NimBLECharacteristic *characteristic)
 {
     dataContainer->OnRead();
 }

@@ -1,8 +1,7 @@
 #ifndef __r2_bt_hub_h__
 #define __r2_bt_hub_h__
 
-#include <BLEDevice.h>
-#include <BLEServer.h>
+#include <NimBLEDevice.h>
 
 #include <vector>
 
@@ -23,9 +22,8 @@ public:
 
     ~R2BTHub()
     {
-        delete pServer;
-        delete pService;
-        delete pAdvertising;
+        delete service;
+        delete advertising;
         for (R2BTCallbackHandler *callbackHandler : callbackHandlers)
         {
             delete callbackHandler;
@@ -46,11 +44,12 @@ public:
     R2BTHub &operator=(const R2BTHub &) = delete;
     R2BTHub(const R2BTHub &other) = delete;
 
-private:
+    
 
-    BLEServer *pServer;
-    BLEService *pService;
-    BLEAdvertising *pAdvertising;
+private:
+    NimBLEServer *server;
+    NimBLEService *service;
+    NimBLEAdvertising *advertising;
     std::vector<R2BTCallbackHandler*> callbackHandlers;
 };
 
