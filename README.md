@@ -56,7 +56,7 @@ void loop() {
     // Print current value
     char *currentValue = testEp->GenerateRawValue();
     Serial.print("Current value (before change): "); Serial.println(currentValue);
-    free(currentValue);
+    delete []currentValue;
 
     //Broadcast new value
     aVariable->SetValue(newValue);

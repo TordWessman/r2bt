@@ -18,8 +18,11 @@ void R2BTHub::AddDataContainer(R2BTDataContainer *dataContainer, cJSON *initialV
     R2BTCallbackHandler *callbackHandler = new R2BTCallbackHandler(dataContainer);
     callbackHandlers.push_back(callbackHandler);
     NimBLECharacteristic *characteristic = dataContainer->Instantiate(service);
-    char *json_str = cJSON_Print(initialValue);
-    characteristic->setValue((uint8_t*)json_str, strlen(json_str) + 1);
+    if(initialValue != nullptr)
+    {
+        char *json_str = cJSON_Print(initialValue);
+        characteristic->setValue((uint8_t *)json_str, strlen(json_str) + 1);
+    } 
     characteristic->setCallbacks((NimBLECharacteristicCallbacks *)callbackHandler);
     characteristic->notify();
 }

@@ -33,7 +33,7 @@ public:
     /// @brief Adds a `R2BTDataContainer` and make it publicly available.
     /// @param dataContainer object to be accessed.
     /// @param initialValue objects initial value.
-    void AddDataContainer(R2BTDataContainer *dataContainer, cJSON *initialValue);
+    void AddDataContainer(R2BTDataContainer *dataContainer, cJSON *initialValue = nullptr);
 
     /// @brief Start broadcasting
     void Start();

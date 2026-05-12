@@ -1,0 +1,32 @@
+{
+  "name": "r2bt",
+  "version": "0.0.1",
+  "description": "Bluetooth Low Energy (BLE) simplification library for ESP32 using NimBLE. Provides a hub/data-container abstraction over BLE services and characteristics with JSON-based data exchange. Sister libraries available for iOS and Android.",
+  "keywords": [
+    "bluetooth",
+    "ble",
+    "esp32",
+    "nimble",
+    "json"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TordWessman/r2bt.git"
+  },
+  "authors": [
+    {
+      "name": "Tord Wessman",
+      "email": "tord@axelit.se",
+      "maintainer": true
+    }
+  ],
+  "license": "UNLICENSED",
+  "frameworks": ["arduino"],
+  "platforms": ["espressif32"],
+  "dependencies": {
+    "h2zero/NimBLE-Arduino": "^1.4.0"
+  },
+  "build": {
+    "srcFilter": ["+<*>", "-<cJSON.c.temporarily.removed>"]
+  }
+}
