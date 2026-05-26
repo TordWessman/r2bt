@@ -23,6 +23,7 @@
 #define TEMP_ID  0x0001
 #define LED_ID   0x0002
 
+/// @port gpio:2 output
 #define LED_PIN 2  // Built-in LED on most ESP32 boards
 
 // ---- Custom data containers -----------------------------------------------
@@ -76,6 +77,7 @@ R2BTHub *hub;
 // ---- Arduino lifecycle ----------------------------------------------------
 
 void setup() {
+    /// @port serial:9600 bus
     Serial.begin(9600);
     delay(1000);
     Serial.println("r2bt BLE Sensor example starting...");
